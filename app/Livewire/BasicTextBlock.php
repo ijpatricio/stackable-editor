@@ -10,7 +10,7 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Livewire\Component;
 
-class TextBasic extends Component implements HasActions, HasForms
+class BasicTextBlock extends Component implements HasActions, HasForms
 {
     use InteractsWithActions, InteractsWithForms;
 

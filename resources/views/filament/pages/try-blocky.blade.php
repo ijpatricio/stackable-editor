@@ -4,7 +4,13 @@
     </div>
     <div>
 
-        @livewire(\App\Livewire\ContentManager::class, key('content-manager'))
+        @php
+            $stackableContent = \App\Models\StackableContent::find(1);
+        @endphp
+
+        @livewire(\App\Livewire\ContentManager::class, [
+            'stackableContent' => $stackableContent,
+        ], key('content-manager'))
 
     </div>
 </x-filament-panels::page>

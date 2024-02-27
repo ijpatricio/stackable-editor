@@ -11,7 +11,7 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Livewire\Component;
 
-class RichText extends Component implements HasActions, HasForms
+class RichEditorBlock extends Component implements HasActions, HasForms
 {
     use InteractsWithActions, InteractsWithForms;
 
