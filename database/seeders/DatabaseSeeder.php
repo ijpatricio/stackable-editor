@@ -26,15 +26,15 @@ class DatabaseSeeder extends Seeder
          ]);
 
          $stackableContent->content_blocks()->create([
-             'block_type' => 'RichEditorBlock',
+             'block_type' => 'rich-editor-block',
          ]);
 
          $stackableContent->content_blocks()->create([
-             'block_type' => 'BasicTextBlock',
+             'block_type' => 'basic-text-block',
          ]);
 
         $stackableContent->content_blocks()->create([
-            'block_type' => 'RichEditorBlock',
+            'block_type' => 'rich-editor-block',
         ]);
     }
 }

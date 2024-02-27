@@ -9,13 +9,13 @@ class ContentManager extends Component
 {
     public  StackableContent $stackableContent;
 
-    public array $stack = [
-         'uuid1',
-    ];
+    public array $uuids = [];
 
     public function mount()
     {
-        ray($this->stackableContent);
+        $this->uuids = $this->stackableContent->content_blocks
+            ->pluck('id')
+            ->toArray();
     }
 
     public function render()
