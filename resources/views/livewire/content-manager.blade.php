@@ -24,8 +24,13 @@
             </div>
         </div>
         @php endforeach; @endphp
+    </ul>
 
+    <div class="flex gap-3">
+        {{ ($this->appendBasicTextBlockAction())(['before_uuid' => 'append']) }}
         <x-filament::button wire:click="$refresh"> Refresh </x-filament::button>
         <x-filament::button wire:click="save"> Save </x-filament::button>
-    </ul>
+    </div>
+
+    <x-filament-actions::modals/>
 </div>
