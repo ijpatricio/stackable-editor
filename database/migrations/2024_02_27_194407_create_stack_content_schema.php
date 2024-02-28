@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('stackable_content_id')->constrained();
             $table->string('block_type');
-            $table->integer('order')->nullable();
+            $table->integer('sort')->nullable();
             $table->json('content')->nullable();
             $table->boolean('is_active')->default(true);
         });

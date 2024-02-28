@@ -27,14 +27,17 @@ class DatabaseSeeder extends Seeder
 
          $stackableContent->content_blocks()->create([
              'block_type' => 'rich-editor-block',
+             'sort' => 1,
          ]);
 
          $stackableContent->content_blocks()->create([
              'block_type' => 'basic-text-block',
+             'sort' => 2,
          ]);
 
         $stackableContent->content_blocks()->create([
             'block_type' => 'rich-editor-block',
+            'sort' => 3,
         ]);
     }
 }
