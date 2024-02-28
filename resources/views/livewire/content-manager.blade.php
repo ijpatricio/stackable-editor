@@ -5,9 +5,9 @@
         x-data="{
        }"
         x-sortable
-        x-on:end.stop="$wire.set('uuids', $event.target.sortable.toArray())"
+        x-on:end.stop="$wire.reorder($event.target.sortable.toArray())"
     >
-        @php foreach($uuids as $uuid): @endphp
+        @php foreach($block_infos as $uuid => $block_type): @endphp
         <div
             wire:key="drag-{{ $uuid }}"
             x-sortable-item="{{ $uuid }}"
@@ -17,10 +17,7 @@
                 ☰
             </div>
             <div>
-                @php
-                $content_block = \App\Models\ContentBlock::where('id', $uuid)->sole();
-                @endphp
-                @livewire($content_block->block_type, ['uuid' => $uuid], key($uuid))
+                @livewire($block_type, ['uuid' => $uuid], key($uuid))
             </div>
         </div>
         @php endforeach; @endphp

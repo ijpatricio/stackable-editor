@@ -10,6 +10,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class ContentManager extends Component implements HasActions, HasForms
@@ -18,13 +19,13 @@ class ContentManager extends Component implements HasActions, HasForms
 
     public StackableContent $stackableContent;
 
-    public array $uuids = [];
+    public array $block_infos = []; //  [ uuid => block_type ]
 
     public function mount()
     {
-        $this->uuids = $this->stackableContent->content_blocks()
+        $this->block_infos = $this->stackableContent->content_blocks()
             ->orderBy('sort')
-            ->pluck('id')
+            ->pluck('block_type', 'id')
             ->toArray();
     }
 
@@ -41,7 +42,9 @@ class ContentManager extends Component implements HasActions, HasForms
         $before_uuid = data_get($arguments, 'before_uuid');
 
         if ($before_uuid === 'append') {
-            // add in memmory
+            $newUuid = str(Str::uuid())->prepend('_')->value();
+
+            $this->block_infos[$newUuid] = 'basic-text-block';
         }
     }
 

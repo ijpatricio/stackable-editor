@@ -14,7 +14,16 @@ class BasicTextBlock extends Component implements HasActions, HasForms
 {
     use InteractsWithActions, InteractsWithForms;
 
+    public string $uuid;
+
     public array $data;
+
+    public function mount()
+    {
+        ray($this->uuid);
+
+        $this->form->fill();
+    }
 
     public function form(Form $form): Form
     {

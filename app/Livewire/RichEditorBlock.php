@@ -15,6 +15,8 @@ class RichEditorBlock extends Component implements HasActions, HasForms
 {
     use InteractsWithActions, InteractsWithForms;
 
+    public string $uuid;
+
     public array $data;
 
     public function mount()
