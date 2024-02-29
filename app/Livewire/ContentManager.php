@@ -25,7 +25,7 @@ class ContentManager extends Component implements HasActions, HasForms
     {
         $this->block_infos = $this->stackableContent->content_blocks()
             ->orderBy('sort')
-            ->pluck('block_type', 'id')
+            ->pluck('block_type', 'uuid')
             ->toArray();
     }
 
@@ -46,6 +46,13 @@ class ContentManager extends Component implements HasActions, HasForms
 
             $this->block_infos[$newUuid] = 'basic-text-block';
         }
+    }
+
+    public function reorder($newBlockInfosOrder)
+    {
+        $this->block_infos = collect($this->block_infos)
+            ->sortKeyByList($newBlockInfosOrder,)
+            ->toArray();
     }
 
     public function save()

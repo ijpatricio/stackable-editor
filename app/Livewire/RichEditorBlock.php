@@ -36,6 +36,6 @@ class RichEditorBlock extends Component implements HasActions, HasForms
 
     public function render()
     {
-        return view('livewire.rich-text');
+        return view('livewire.rich-editor-block');
     }
 }

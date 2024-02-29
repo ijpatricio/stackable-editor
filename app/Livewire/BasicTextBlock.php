@@ -20,8 +20,6 @@ class BasicTextBlock extends Component implements HasActions, HasForms
 
     public function mount()
     {
-        ray($this->uuid);
-
         $this->form->fill();
     }
 
@@ -37,6 +35,6 @@ class BasicTextBlock extends Component implements HasActions, HasForms
 
     public function render()
     {
-        return view('livewire.text-basic');
+        return view('livewire.basic-text-block');
     }
 }

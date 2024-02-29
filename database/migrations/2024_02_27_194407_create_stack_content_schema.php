@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('stackable_contents', function (Blueprint $table) {
             $table->id();
+            $table->uuid()->unique();
             $table->timestamps();
             $table->string('title')->nullable();
         });
 
         Schema::create('content_blocks', function (Blueprint $table) {
             $table->id();
+            $table->uuid()->unique();
             $table->timestamps();
             $table->foreignId('stackable_content_id')->constrained();
             $table->string('block_type');
