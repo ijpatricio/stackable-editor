@@ -10,6 +10,12 @@ class ContentBlock extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
+    protected $casts = [
+        'content' => 'json',
+    ];
+
     protected static function boot()
     {
         parent::boot();

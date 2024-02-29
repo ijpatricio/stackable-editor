@@ -42,7 +42,7 @@ class ContentManager extends Component implements HasActions, HasForms
         $before_uuid = data_get($arguments, 'before_uuid');
 
         if ($before_uuid === 'append') {
-            $newUuid = str(Str::uuid())->prepend('_')->value();
+            $newUuid = str(Str::uuid())->value();
 
             $this->block_infos[$newUuid] = 'basic-text-block';
         }
@@ -57,6 +57,8 @@ class ContentManager extends Component implements HasActions, HasForms
 
     public function save()
     {
+        $this->dispatch('update:content-manager', block_infos: $this->block_infos);
+
         Notification::make()->success()->color('success')->title('TODO: Save')->body('Your changes are almost saved. :)')->send();
     }
 
