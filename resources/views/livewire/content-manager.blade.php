@@ -16,8 +16,11 @@
             <div class="cursor-move" x-sortable-handle>
                 ☰
             </div>
-            <div>
+            <div class="w-full">
                 @livewire($block_type, ['uuid' => $uuid], key($uuid))
+            </div>
+            <div>
+                {{ ($this->deleteBlockAction())(['uuid' => $uuid])}}
             </div>
         </div>
         @php endforeach; @endphp

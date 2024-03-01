@@ -6,7 +6,6 @@ use App\Models\ContentBlock;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
@@ -33,9 +32,30 @@ class RichEditorBlock extends Component implements HasActions, HasForms, HasStac
         return $form
             ->schema([
                 RichEditor::make('data')
+                    ->id($this->uuid)
+                    ->toolbarButtons(static::availableToolbarButtons())
                     ->label(''),
             ])
             ->statePath('data');
+    }
+
+    public static function availableToolbarButtons(): array
+    {
+        return [
+            'blockquote',
+            'bold',
+            'bulletList',
+            'codeBlock',
+            'h2',
+            'h3',
+            'italic',
+            'link',
+            'orderedList',
+            'redo',
+            'strike',
+            'underline',
+            'undo',
+        ];
     }
 
     public function save(int $order): void
