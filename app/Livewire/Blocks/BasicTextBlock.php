@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Blocks;
 
+use App\Livewire\HasStackableContent;
+use App\Livewire\InteractsWithStackableContent;
 use App\Models\ContentBlock;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -9,13 +11,16 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
-use Illuminate\Support\Str;
 use Livewire\Component;
 
 class BasicTextBlock extends Component implements HasActions, HasForms, HasStackableContent
 {
     use InteractsWithActions, InteractsWithForms;
     use InteractsWithStackableContent;
+
+    public static $menuIcon = 'heroicon-o-plus';
+
+    public static $menuTitle = 'Basic Text';
 
     public string $uuid;
 
@@ -52,6 +57,6 @@ class BasicTextBlock extends Component implements HasActions, HasForms, HasStack
 
     public function render()
     {
-        return view('livewire.basic-text-block');
+        return view('livewire.blocks.basic-text-block');
     }
 }

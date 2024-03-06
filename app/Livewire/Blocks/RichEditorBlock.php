@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Blocks;
 
+use App\Livewire\HasStackableContent;
+use App\Livewire\InteractsWithStackableContent;
 use App\Models\ContentBlock;
 use App\Models\StackableContent;
 use Filament\Actions\Concerns\InteractsWithActions;
@@ -16,6 +18,10 @@ class RichEditorBlock extends Component implements HasActions, HasForms, HasStac
 {
     use InteractsWithActions, InteractsWithForms;
     use InteractsWithStackableContent;
+
+    public static $menuIcon = 'heroicon-o-pencil';
+
+    public static $menuTitle = 'Rich Editor';
 
     public StackableContent $stackableContent;
 
@@ -78,7 +84,7 @@ class RichEditorBlock extends Component implements HasActions, HasForms, HasStac
 
     public function render()
     {
-        return view('livewire.rich-editor-block');
+        return view('livewire.blocks.rich-editor-block');
     }
 
 }

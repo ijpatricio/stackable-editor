@@ -2,17 +2,21 @@
 
 namespace App\Livewire;
 
+use App\Models\StackableContent;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Support\Enums\MaxWidth;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
 class QuickBlocks extends Component implements HasActions, HasForms
 {
     use InteractsWithActions, InteractsWithForms;
+
+    public StackableContent $stackableContent;
 
     protected function continueTypingAction()
     {
@@ -39,6 +43,21 @@ class QuickBlocks extends Component implements HasActions, HasForms
         $this->js(<<<JS
         \$wire.\$parent.save()
         JS);
+    }
+
+    protected function chooseNewBlockMenuAction()
+    {
+        return Action::make('chooseNewBlockMenuAction')
+            ->label('Choose new block')
+            ->icon('heroicon-o-plus')
+            ->slideOver()
+            ->modalWidth(MaxWidth::Small)
+            ->action(fn() => $this->dispatch('open-modal', id: 'chooseNewBlockModal'));
+    }
+
+    public function newBlockMenu($data)
+    {
+        ray('newBlockMenu', $data);
     }
 
     public function render()

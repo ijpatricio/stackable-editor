@@ -2,7 +2,7 @@
     <div class="flex gap-2 justify-between mr-8">
 
         <div>
-            {{ ($this->continueTypingAction())(['before_uuid' => 'append']) }}
+            {{ $this->continueTypingAction() }}
         </div>
 
         <div>
@@ -10,10 +10,25 @@
         </div>
 
         <div>
+            {{ $this->chooseNewBlockMenuAction() }}
+        </div>
+
+        <div>
             <x-filament::button wire:click="delegateSave"> Save </x-filament::button>
         </div>
 
     </div>
+
+    <x-filament::modal
+        id="chooseNewBlockModal"
+        slide-over
+    >
+        <div>
+            @livewire(\App\Livewire\BlockMenu::class, ['stackable_content_uuid' => $stackableContent->uuid], key($stackableContent->uuid))
+        </div>
+    </x-filament::modal>
+
+
 
     <x-filament-actions::modals/>
 </div>

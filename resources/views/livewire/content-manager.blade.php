@@ -17,7 +17,7 @@
                 ☰
             </div>
             <div class="w-full">
-                @livewire($block_type, ['uuid' => $uuid, 'stackableContent' => $stackableContent], key($uuid))
+                @livewire('blocks.'.$block_type, ['uuid' => $uuid, 'stackableContent' => $stackableContent], key($uuid))
             </div>
             <div>
                 {{ ($this->deleteBlockAction())(['uuid' => $uuid])}}
@@ -27,7 +27,7 @@
     </ul>
 
     <div class="mt-8 ml-7 ">
-        @livewire(\App\Livewire\QuickBlocks::class)
+        @livewire(\App\Livewire\QuickBlocks::class, ['stackableContent' => $stackableContent])
     </div>
 
 {{--    Development Purposes --}}
