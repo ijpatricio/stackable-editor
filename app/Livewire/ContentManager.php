@@ -73,7 +73,7 @@ class ContentManager extends Component implements HasActions, HasForms
 
     public function save(): void
     {
-        $this->dispatch('update:content-manager', block_infos: $this->block_infos);
+        $this->dispatch('update:content-manag   er', block_infos: $this->block_infos);
 
         Notification::make()->success()->color('success')->title('TODO: Save')->body('Your changes are almost saved. :)')->send();
     }

@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use Livewire\Attributes\On;
-use Str;
 
 trait InteractsWithStackableContent
 {

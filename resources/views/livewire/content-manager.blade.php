@@ -17,7 +17,7 @@
                 ☰
             </div>
             <div class="w-full">
-                @livewire($block_type, ['uuid' => $uuid], key($uuid))
+                @livewire($block_type, ['uuid' => $uuid, 'stackableContent' => $stackableContent], key($uuid))
             </div>
             <div>
                 {{ ($this->deleteBlockAction())(['uuid' => $uuid])}}
@@ -29,13 +29,6 @@
     <div class="mt-8 ml-7 ">
         @livewire(\App\Livewire\QuickBlocks::class)
     </div>
-
-    @teleport('#quickBlocksSaveTarget')
-    <div>
-        Broken: disappears after append
-        <x-filament::button wire:click="save"> Save </x-filament::button>
-    </div>
-    @endteleport
 
 {{--    Development Purposes --}}
 {{--    <div class="flex gap-3 justify-end mr-8">--}}

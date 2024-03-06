@@ -9,7 +9,9 @@
             <x-filament::input placeholder="Paste an image here..."></x-filament::input>
         </div>
 
-        <div id="quickBlocksSaveTarget"></div>
+        <div>
+            <x-filament::button wire:click="delegateSave"> Save </x-filament::button>
+        </div>
 
     </div>
 

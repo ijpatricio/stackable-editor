@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\ContentBlock;
+use App\Models\StackableContent;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\RichEditor;
@@ -15,6 +16,8 @@ class RichEditorBlock extends Component implements HasActions, HasForms, HasStac
 {
     use InteractsWithActions, InteractsWithForms;
     use InteractsWithStackableContent;
+
+    public StackableContent $stackableContent;
 
     public string $uuid;
 
@@ -61,7 +64,10 @@ class RichEditorBlock extends Component implements HasActions, HasForms, HasStac
     public function save(int $order): void
     {
         ContentBlock::updateOrCreate(
-            ['uuid' => $this->uuid],
+            [
+                'stackable_content_id' => $this->stackableContent->id,
+                'uuid' => $this->uuid,
+            ],
             [
                 'block_type' => 'rich-editor-block',
                 'sort' => $order,

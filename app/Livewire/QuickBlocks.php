@@ -34,6 +34,13 @@ class QuickBlocks extends Component implements HasActions, HasForms
         JS);
     }
 
+    public function delegateSave(): void
+    {
+        $this->js(<<<JS
+        \$wire.\$parent.save()
+        JS);
+    }
+
     public function render()
     {
         return view('livewire.quick-blocks');
