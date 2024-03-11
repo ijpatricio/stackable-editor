@@ -5,6 +5,7 @@ namespace App\Livewire\Blocks;
 use App\Livewire\HasStackableContent;
 use App\Livewire\InteractsWithStackableContent;
 use App\Models\ContentBlock;
+use App\Models\StackableContent;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\TextInput;
@@ -18,11 +19,14 @@ class BasicTextBlock extends Component implements HasActions, HasForms, HasStack
     use InteractsWithActions, InteractsWithForms;
     use InteractsWithStackableContent;
 
+    public StackableContent $stackableContent;
+
+    public string $uuid;
+
     public static $menuIcon = 'heroicon-o-plus';
 
     public static $menuTitle = 'Basic Text';
 
-    public string $uuid;
 
     public array $data;
 
@@ -38,6 +42,7 @@ class BasicTextBlock extends Component implements HasActions, HasForms, HasStack
         return $form
             ->schema([
                 TextInput::make('content')
+                    ->id($this->uuid)
                     ->label(''),
             ])
             ->statePath('data');
@@ -46,7 +51,10 @@ class BasicTextBlock extends Component implements HasActions, HasForms, HasStack
     public function save(int $order): void
     {
         ContentBlock::updateOrCreate(
-            ['uuid' => $this->uuid],
+            [
+                'uuid' => $this->uuid,
+                'stackable_content_id' => $this->stackableContent->id,
+            ],
             [
                 'block_type' => 'basic-text-block',
                 'sort' => $order,

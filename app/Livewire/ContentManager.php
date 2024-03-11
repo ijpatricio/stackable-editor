@@ -11,6 +11,7 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
 use Filament\Support\Enums\ActionSize;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ContentManager extends Component implements HasActions, HasForms
@@ -59,6 +60,7 @@ class ContentManager extends Component implements HasActions, HasForms
             ->toArray();
     }
 
+    #[On('append-block')]
     public function appendBlock(string $uuid, string $block_type): void
     {
         $this->block_infos[$uuid] = $block_type;
@@ -75,7 +77,12 @@ class ContentManager extends Component implements HasActions, HasForms
     {
         $this->dispatch('update:content-manager', block_infos: $this->block_infos);
 
-        Notification::make()->success()->color('success')->title('TODO: Save')->body('Your changes are almost saved. :)')->send();
+        Notification::make()
+            ->color('success')
+            ->success()
+            ->title('Saved!')
+            ->body('Successfully saved.')
+            ->send();
     }
 
     public function render()

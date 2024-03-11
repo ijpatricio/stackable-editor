@@ -8,26 +8,27 @@ use App\Models\ContentBlock;
 use App\Models\StackableContent;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Livewire\Component;
 
-class RichEditorBlock extends Component implements HasActions, HasForms, HasStackableContent
+class ImageBlock extends Component implements HasActions, HasForms, HasStackableContent
 {
     use InteractsWithActions, InteractsWithForms;
     use InteractsWithStackableContent;
+
+    public static $menuIcon = 'heroicon-o-photo';
+
+    public static $menuTitle = 'Image';
 
     public StackableContent $stackableContent;
 
     public string $uuid;
 
     public array $data;
-
-    public static $menuIcon = 'heroicon-o-pencil';
-
-    public static $menuTitle = 'Rich Editor';
 
     public function mount()
     {
@@ -40,31 +41,11 @@ class RichEditorBlock extends Component implements HasActions, HasForms, HasStac
     {
         return $form
             ->schema([
-                RichEditor::make('data')
+                FileUpload::make('data')
                     ->id($this->uuid)
-                    ->toolbarButtons(static::availableToolbarButtons())
                     ->label(''),
             ])
             ->statePath('data');
-    }
-
-    public static function availableToolbarButtons(): array
-    {
-        return [
-            'blockquote',
-            'bold',
-            'bulletList',
-            'codeBlock',
-            'h2',
-            'h3',
-            'italic',
-            'link',
-            'orderedList',
-            'redo',
-            'strike',
-            'underline',
-            'undo',
-        ];
     }
 
     public function save(int $order): void
@@ -75,7 +56,7 @@ class RichEditorBlock extends Component implements HasActions, HasForms, HasStac
                 'uuid' => $this->uuid,
             ],
             [
-                'block_type' => 'rich-editor-block',
+                'block_type' => 'image-block',
                 'sort' => $order,
                 'content' => $this->form->getState(),
             ]

@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use File;
+use Illuminate\Support\Str;
+use Livewire\Attributes\Renderless;
 use Livewire\Component;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -14,23 +16,29 @@ class BlockMenu extends Component
 
     public function mount(): void
     {
-        $this->hydrateBlocks();
-
-        ray($this->blocks);
+        $this->getBlocks();
     }
 
-    public function render()
+    public function append(string $blockClass)
     {
-        return view('livewire.block-menu');
+        $block_type = str($blockClass)->classBasename()->kebab()->value();
+        $uuid = (string) Str::uuid();
+
+        $this->dispatch('append-block', uuid: $uuid, block_type: $block_type);
     }
 
-    private function hydrateBlocks()
+    private function getBlocks(): void
     {
-        $this->blocks =  collect(File::files(app_path('Livewire/Blocks')))
+        $this->blocks = collect(File::files(app_path('Livewire/Blocks')))
             ->map(function (SplFileInfo $file) {
                 $filenameWithoutExtension = $file->getFilenameWithoutExtension();
                 return "App\\Livewire\\Blocks\\{$filenameWithoutExtension}";
             })
             ->toArray();
+    }
+
+    public function render()
+    {
+        return view('livewire.block-menu');
     }
 }
