@@ -46,13 +46,14 @@ class QuickBlocks extends Component implements HasActions, HasForms
         JS);
     }
 
-    public function onPasteImage(): void
+    public function onPasteImage(): string
     {
-        ray('----- onPasteImage ------');
         $uuid = (string) Str::uuid();
         $block_type = 'image-block';
 
         $this->dispatch('append-block', uuid: $uuid, block_type: $block_type);
+
+        return $uuid;
     }
 
     protected function chooseNewBlockMenuAction()

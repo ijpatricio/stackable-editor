@@ -1,7 +1,5 @@
 <div x-init class="flex flex-col gap-6">
     @foreach($blocks as $blockClass)
-
-        @ray($blockClass)
         <button
             class="flex items-center gap-x-8 p-4 border border-gray-200 rounded-lg hover:bg-primary-200"
             @click="

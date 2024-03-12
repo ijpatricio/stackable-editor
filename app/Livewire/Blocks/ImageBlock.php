@@ -35,6 +35,8 @@ class ImageBlock extends Component implements HasActions, HasForms, HasStackable
         $this->form->fill(
             ContentBlock::where('uuid', $this->uuid)->value('content')
         );
+
+        $this->dispatch('block-mounted', uuid: $this->uuid);
     }
 
     public function form(Form $form): Form
@@ -43,6 +45,7 @@ class ImageBlock extends Component implements HasActions, HasForms, HasStackable
             ->schema([
                 FileUpload::make('data')
                     ->id($this->uuid)
+                    ->imageEditor()
                     ->label(''),
             ])
             ->statePath('data');
