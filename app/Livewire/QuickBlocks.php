@@ -10,6 +10,7 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Support\Enums\MaxWidth;
 use Illuminate\Support\Str;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class QuickBlocks extends Component implements HasActions, HasForms
@@ -43,6 +44,15 @@ class QuickBlocks extends Component implements HasActions, HasForms
         $this->js(<<<JS
         \$wire.\$parent.save()
         JS);
+    }
+
+    public function onPasteImage(): void
+    {
+        ray('----- onPasteImage ------');
+        $uuid = (string) Str::uuid();
+        $block_type = 'image-block';
+
+        $this->dispatch('append-block', uuid: $uuid, block_type: $block_type);
     }
 
     protected function chooseNewBlockMenuAction()
