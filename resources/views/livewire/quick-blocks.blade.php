@@ -47,6 +47,8 @@
 
                             let success = false
 
+                            // Wait for the upload component (Filepond) to be initialized
+                            // Didn't find a way to listen to when that happens.
                             const interval = setInterval(() => {
                                 const uploadComponent = document.getElementById(uuid)
                                 if (uploadComponent === null || success === true) {
@@ -61,38 +63,15 @@
                                 success = true
                             }, 300)
 
+                            // If the upload component is not initialized after 7 seconds, stop trying
                             setTimeout(() => {
                                 clearInterval(interval)
                             }, 7000)
-
-
-                            // Livewire.on('block-mounted', (e) => {
-                            //     if(e.uuid !== uuid) {
-                            //         return
-                            //     }
-                            //     console.log('block-mounted')
-                            //     $nextTick(() => {
-                            //         const uploadComponent = document.getElementById(uuid)
-                            //         const instance = Alpine.$data(uploadComponent)
-                            //         instance.pond.addFile(this.image)
-                            //     })
-                            // })
-
-                            // This code is to get the file as a Base64 string.
-                            //
-                            // const blob = item.getAsFile()
-                            // const reader = new FileReader()
-                            // reader.onload = (e) => {
-                                // File encoded as a Base64 string
-                                // $dispatch('image-pasted', { data: e.target.result });
-                            // }
-                            // reader.readAsDataURL(blob)
                         }
                     }
                 });
             }
         }))
-        console.log(1111)
     </script>
     @endscript
 
