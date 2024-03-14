@@ -1,5 +1,15 @@
 <div>
-    <div class="my-12"> Stackable Content Editor </div>
+    <div class="my-12 flex justify-between">
+        <div class=""> Stackable Content Editor </div>
+
+        <x-filament::button
+            outlined
+            @click="console.log('fooo'); $dispatch('open-modal', { id: 'content-preview' })"
+        >
+            Preview
+        </x-filament::button>
+    </div>
+
 
     <ul
         x-data="{
@@ -34,6 +44,8 @@
 {{--    <div class="flex gap-3 justify-end mr-8">--}}
 {{--        <x-filament::button wire:click="$refresh"> Refresh </x-filament::button>--}}
 {{--    </div>--}}
+
+    @livewire('content-preview', ['stackableContent' => $stackableContent])
 
     <x-filament-actions::modals/>
 </div>

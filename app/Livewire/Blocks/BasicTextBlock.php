@@ -27,6 +27,7 @@ class BasicTextBlock extends Component implements HasActions, HasForms, HasStack
 
     public static $menuTitle = 'Basic Text';
 
+    public static $previewTemplate = 'livewire.block-templates.basic-text-block';
 
     public array $data;
 
@@ -60,6 +61,23 @@ class BasicTextBlock extends Component implements HasActions, HasForms, HasStack
                 'sort' => $order,
                 'content' => $this->form->getState(),
             ]
+        );
+    }
+
+    public static function transformDataOnLoad($data)
+    {
+        //
+
+        return $data;
+    }
+
+    public static function renderTemplate($data)
+    {
+        return view(
+            view: static::$previewTemplate,
+            data: [
+                'block_data' => static::transformDataOnLoad($data),
+            ],
         );
     }
 

@@ -13,6 +13,7 @@ use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class ImageBlock extends Component implements HasActions, HasForms, HasStackableContent
@@ -23,6 +24,8 @@ class ImageBlock extends Component implements HasActions, HasForms, HasStackable
     public static $menuIcon = 'heroicon-o-photo';
 
     public static $menuTitle = 'Image';
+
+    public static $previewTemplate = 'livewire.block-templates.image-block';
 
     public StackableContent $stackableContent;
 
@@ -43,7 +46,7 @@ class ImageBlock extends Component implements HasActions, HasForms, HasStackable
     {
         return $form
             ->schema([
-                FileUpload::make('data')
+                FileUpload::make('image')
                     ->id($this->uuid)
                     ->imageEditor()
                     ->label(''),
@@ -66,9 +69,30 @@ class ImageBlock extends Component implements HasActions, HasForms, HasStackable
         );
     }
 
+    public static function transformDataOnLoad($data)
+    {
+        $imageLink = asset(
+            Storage::url($data['image'])
+        );
+
+        data_set($data, 'image', $imageLink);
+
+        return $data;
+    }
+
+    public static function renderTemplate($data)
+    {
+        return view(
+            view: static::$previewTemplate,
+            data: [
+                'block_data' => static::transformDataOnLoad($data),
+            ],
+        );
+    }
+
     public function render()
     {
-        return view('livewire.blocks.rich-editor-block');
+        return view('livewire.blocks.image-block');
     }
 
 }

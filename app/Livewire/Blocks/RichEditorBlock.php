@@ -21,6 +21,8 @@ class RichEditorBlock extends Component implements HasActions, HasForms, HasStac
 
     public StackableContent $stackableContent;
 
+    public static $previewTemplate = 'livewire.block-templates.rich-editor-block';
+
     public string $uuid;
 
     public array $data;
@@ -40,7 +42,7 @@ class RichEditorBlock extends Component implements HasActions, HasForms, HasStac
     {
         return $form
             ->schema([
-                RichEditor::make('data')
+                RichEditor::make('content')
                     ->id($this->uuid)
                     ->toolbarButtons(static::availableToolbarButtons())
                     ->label(''),
@@ -79,6 +81,23 @@ class RichEditorBlock extends Component implements HasActions, HasForms, HasStac
                 'sort' => $order,
                 'content' => $this->form->getState(),
             ]
+        );
+    }
+
+    public static function transformDataOnLoad($data)
+    {
+        //
+
+        return $data;
+    }
+
+    public static function renderTemplate($data)
+    {
+        return view(
+            view: static::$previewTemplate,
+            data: [
+                'block_data' => static::transformDataOnLoad($data),
+            ],
         );
     }
 
