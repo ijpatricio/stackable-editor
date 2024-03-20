@@ -8,6 +8,7 @@ use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 abstract class BaseBlock extends Component implements HasActions, HasForms, HasStackableContent
@@ -35,6 +36,13 @@ abstract class BaseBlock extends Component implements HasActions, HasForms, HasS
         return $data;
     }
 
+    public function kebabName(): string
+    {
+        return Str::kebab(
+            class_basename(static::class)
+        );
+    }
+
     public function save(int $order): void
     {
         ContentBlock::updateOrCreate(
@@ -43,7 +51,7 @@ abstract class BaseBlock extends Component implements HasActions, HasForms, HasS
                 'stackable_content_id' => $this->stackableContent->id,
             ],
             [
-                'block_type' => 'basic-text-block',
+                'block_type' => $this->kebabName(),
                 'sort' => $order,
                 'content' => $this->form->getState(),
             ]
@@ -62,6 +70,6 @@ abstract class BaseBlock extends Component implements HasActions, HasForms, HasS
 
     public function render()
     {
-        return view('livewire.blocks.basic-text-block');
+        return view('livewire.blocks.' . $this->kebabName());
     }
 }
