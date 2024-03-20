@@ -3,9 +3,23 @@
 >
     <x-filament::modal
         id="content-preview"
+        :width="$modalWidth"
     >
         <x-slot name="heading">
-            Preview
+            <div class="flex items-center gap-4">
+                <div>Preview</div>
+                <div>
+                    <x-filament::input.wrapper>
+                        <x-filament::input.select wire:model.live="modalWidth">
+                            <option value="max-w-screen-sm">Viewport: SM</option>
+                            <option value="max-w-screen-md">Viewport: MD</option>
+                            <option value="max-w-screen-lg">Viewport: LG</option>
+                            <option value="max-w-screen-xl">Viewport: XL</option>
+                            <option value="max-w-screen-2xl">Viewport: 3XL</option>
+                        </x-filament::input.select>
+                    </x-filament::input.wrapper>
+                </div>
+            </div>
         </x-slot>
 
 

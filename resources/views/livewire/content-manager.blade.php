@@ -4,7 +4,7 @@
 
         <x-filament::button
             outlined
-            @click="console.log('fooo'); $dispatch('open-modal', { id: 'content-preview' })"
+            @click="$dispatch('open-modal', { id: 'content-preview' })"
         >
             Preview
         </x-filament::button>
@@ -45,7 +45,7 @@
 {{--        <x-filament::button wire:click="$refresh"> Refresh </x-filament::button>--}}
 {{--    </div>--}}
 
-    @livewire('content-preview', ['stackableContent' => $stackableContent])
+    @livewire(\App\Livewire\ContentPreview::class, ['stackableContent' => $stackableContent])
 
     <x-filament-actions::modals/>
 </div>

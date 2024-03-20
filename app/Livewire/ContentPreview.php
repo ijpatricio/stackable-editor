@@ -9,6 +9,8 @@ class ContentPreview extends Component
 {
     public StackableContent $stackableContent;
 
+    public string $modalWidth = 'max-w-screen-sm';
+
     public function render()
     {
         $this->stackableContent->load([
