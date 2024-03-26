@@ -1,0 +1,23 @@
+{
+    "name": "ijpatricio/stackable-content",
+    "description": "A content editor based on a sgtack of blocks, built in Livewire and Filament components.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ijpatricio\\StackableContent\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Joao Patricio",
+            "email": "ijpatricio@gmail.com"
+        }
+    ],
+    "require": {},
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
