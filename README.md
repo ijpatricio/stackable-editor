@@ -1,6 +1,6 @@
 ## WIP WIP WIP
 
-It's open sourced ahead of time, so you can follow along and see the progress.
+It's open sourced ahead of time, so follow along and see the progress.
 
 This is a build in public project (actually, build in live streaming).
 
