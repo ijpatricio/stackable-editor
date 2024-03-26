@@ -1,11 +1,11 @@
 {
-    "name": "ijpatricio/stackable-content",
-    "description": "A content editor based on a sgtack of blocks, built in Livewire and Filament components.",
+    "name": "ijpatricio/stackable-editor",
+    "description": "A content editor built as a stack of blocks, in Livewire and Filament components.",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Ijpatricio\\StackableContent\\": "src/"
+            "Ijpatricio\\StackableEditor\\": "src/"
         }
     },
     "authors": [
@@ -15,6 +15,13 @@
         }
     ],
     "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ijpatricio\\StackableEditor\\StackableEditorServiceProvider"
+            ]
+        }
+    },
     "config": {
         "allow-plugins": {
             "pestphp/pest-plugin": true
