@@ -6,10 +6,15 @@
         </div>
 
         <div>
-            <x-filament::input
-                x-data="pasteAnImage()"
-                placeholder="Paste an image here..."
-            ></x-filament::input>
+
+            <x-filament::input.wrapper>
+                <x-filament::input
+                    type="text"
+                    x-data="pasteAnImage()"
+                    placeholder="Paste an image here..."
+                ></x-filament::input>
+            </x-filament::input.wrapper>
+
         </div>
 
         <div>
